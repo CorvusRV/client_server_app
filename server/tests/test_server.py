@@ -14,16 +14,16 @@ def test_01_server_app_initialization(server_app):
 def test_02_create_data_entry(client):
     """Тест создания записи"""
     test_data = {
-        "date": "2025-01-01",  # Фиксированная дата для стабильности теста
+        "date": "2025-01-01",
         "time": "12:00:00",
-        "text": "Тестовые данные",
+        "text": "Сообщение",
         "click_count": 1
     }
 
-    response = client.post("/data/", json=test_data)
+    response = client.post(Config.S_POST_ENDPOINT, json=test_data)
     assert response.status_code == 200
     result = response.json()
-    assert result["text"] == "Тестовые данные"
+    assert result["text"] == "Сообщение"
     assert "id" in result
 
 
@@ -43,4 +43,3 @@ def test_04_invalid_data_format(client):
         "click_count": 1
     })
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
-

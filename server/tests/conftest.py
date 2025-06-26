@@ -1,6 +1,5 @@
 import pytest
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from server.config import Config
 from server.database import Base, Database
 
@@ -39,5 +38,4 @@ def server_app(database):
 def client(server_app):
     """Тестовый клиент"""
     from fastapi.testclient import TestClient
-    # return TestClient(server_app.app)
     return TestClient(server_app.app, base_url="http://testserver")

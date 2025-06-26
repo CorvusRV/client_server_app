@@ -17,16 +17,15 @@ def test_get_db(database):
         assert db.is_active
     finally:
         try:
-            next(gen)  # Завершаем генератор
+            next(gen)
         except StopIteration:
             pass
 
 
 def test_create_tables(database):
     """Тест создания таблиц"""
-    from server.models import DataEntry
+
     database.create_tables()
 
-    # Проверяем, что таблица существует
     inspector = inspect(database.engine)
     assert "data_entries" in inspector.get_table_names()
