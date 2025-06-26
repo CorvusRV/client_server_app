@@ -8,7 +8,7 @@ from client.config import Config
 def client_app(qtbot):
     """Фикстура для создания тестового экземпляра приложения"""
     window = ClientApp()
-    window._mock_message_handler = MagicMock()  # Мокируем обработчик сообщений
+    window._mock_message_handler = MagicMock()
     qtbot.addWidget(window)
     yield window
     window.close()
@@ -16,7 +16,7 @@ def client_app(qtbot):
 def test_01_send_data_success(client_app):
     """Тест успешной отправки данных"""
 
-    test_text = "Test message"
+    test_text = "Сообщение"
     client_app.input_line.setText(test_text)
 
     with patch('client.app.requests.post') as mock_post:
@@ -47,7 +47,7 @@ def test_02_send_data_empty_input(client_app):
 def test_03_send_data_failure(client_app):
     """Тест обработки ошибки"""
 
-    client_app.input_line.setText("Test")
+    client_app.input_line.setText("Сообщение")
 
     with patch('client.app.requests.post') as mock_post:
         mock_post.side_effect = Exception("error")
@@ -63,7 +63,7 @@ def test_04_getting_data_success(client_app):
     test_data = [{
         "date": "2023-01-01",
         "time": "12:00:00",
-        "text": "Test item",
+        "text": "Сообщение",
         "click_count": 1,
         "id": 1
     }]
@@ -76,7 +76,7 @@ def test_04_getting_data_success(client_app):
         client_app.getting_data()
 
         assert client_app.list_model.stringList() == [
-            "2023-01-01 12:00:00 | Test item | Click: 1"
+            "2023-01-01 12:00:00 | Сообщение | Click: 1"
         ]
 
         mock_get.assert_called_once_with(

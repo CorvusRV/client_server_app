@@ -109,4 +109,4 @@ class ClientApp(QMainWindow):
                     for item in data]
                 self.list_model.setStringList(items)
         except Exception as e:
-            self.show_message("Ошибка", f"Не удалось отправить данные: {str(e)}", 'error')
+            self.show_message("Ошибка", f"Не удалось получить данные: {str(e)}", 'error')

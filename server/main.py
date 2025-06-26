@@ -9,6 +9,3 @@ def main():
     app = ServerApp(db).app
     uvicorn.run(app, host=Config.S_HOST, port=Config.S_PORT)
 
-
-if __name__ == "__main__":
-    main()

@@ -6,8 +6,9 @@ class Config:
     S_POST_ENDPOINT = "/data/"
     S_GET_ENDPOINT = "/data/"
 
-    # Базовые параметры настройки сервера
+    # Базовые параметры настройки БД
     DB_URL = "sqlite:///./data.db"
     DB_ECHO = False
 
+    # URL тестовой БД
     TEST_DB_URL = f"{DB_URL}_test"
